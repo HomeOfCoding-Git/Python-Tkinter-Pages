@@ -1,0 +1,222 @@
+'''
+author: @HomeOfCoding-Git
+'''
+
+# Main Page ____________________________________ Start
+
+from tkinter import *
+import tkinter as tk
+
+# import Pages
+import home
+import page1
+import page2
+
+
+class Main(tk.Tk):
+
+    def __init__(self, *args, **kwargs):
+        tk.Tk.__init__(self, *args, **kwargs)
+
+        page = tk.Frame(self)
+        page.pack(side="top", fill="both", expand=True)
+        page.grid_rowconfigure(0, weight=1)
+        page.grid_columnconfigure(0, weight=1)
+
+        self.frames = {}
+
+        for F in (home.HomePage, page1.PageOne, page2.PageTwo):
+            frame = F(page, self)
+            self.frames[F] = frame
+            frame.grid(row=0, column=0, sticky="nsew")
+
+        self.show_frame(home.HomePage)
+
+    def show_frame(self, context):
+        frame = self.frames[context]
+        frame.rowconfigure(0, weight=2)
+        frame.columnconfigure(0, weight=2)
+        frame.tkraise()
+        
+
+if __name__ == "__main__":
+    root = Main()
+    root.minsize(600,500)
+
+    root.mainloop()
+
+# Main Page ____________________________________ End
+
+# HomePage ____________________________________ Start
+
+from tkinter import *
+import tkinter as tk
+
+# import Pages
+import page1
+import page2
+
+
+# HomePage
+class HomePage(tk.Frame):
+
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+
+        # Frame
+        home_frame = tk.Frame(self, bg="#272727")
+        home_frame.pack(side="top", fill="both", expand=True)
+
+        # Header Frame
+        header_frame = tk.Frame(home_frame, bg="#1a1a1a")
+        header_frame.pack(side="top", fill="x", anchor="n")
+
+        # Header Text
+        label1 = tk.Label(header_frame,text="Home", width=8, bg="#272727", fg="#a38627", font="arial 16")
+        label1.pack(side="left", padx=(10,0), ipady=10)
+
+        #Menu Buttons
+
+        #PageTwo
+        page_two_btn = tk.Button(header_frame, text="Page Two", width=8,
+                                 bg="#272727", fg="#a38627", font="arial 11", relief="flat",
+                                 command=lambda: controller.show_frame(page2.PageTwo))
+        page_two_btn.pack(side="right", padx=2, anchor="se")
+        
+        #PageOne
+        page_one_btn = tk.Button(header_frame, text="Page One", width=8,
+                                 bg="#272727", fg="#a38627", font="arial 11", relief="flat",
+                                 command=lambda: controller.show_frame(page1.PageOne))
+        page_one_btn.pack(side="right", padx=2, anchor="se")
+
+        # Center Frame: For Title & Text
+        center_frame = tk.Frame(home_frame, bg="#272727")
+        center_frame.pack(pady=(200,0))
+
+        # Title
+        title_label = tk.Label(center_frame, text="Title Here for HomePage",
+                               bg="#272727", fg="#a38627", font="arial 20")
+        title_label.pack()
+
+        # Text
+        text_label = tk.Label(center_frame, text="Add content to HomePage",
+                              bg="#272727", fg="#a38627", font="arial 18")
+        text_label.pack(pady=(50,0))
+		
+# HomePage ____________________________________ End
+
+# PageOne ____________________________________ Start
+
+from tkinter import *
+import tkinter as tk
+
+# import Pages
+import home
+import page2
+
+
+# PageOne
+class PageOne(tk.Frame):
+
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+
+        # Frame
+        home_frame = tk.Frame(self, bg="#272727")
+        home_frame.pack(side="top", fill="both", expand=True)
+
+        # Header Frame
+        header_frame = tk.Frame(home_frame, bg="#1a1a1a")
+        header_frame.pack(side="top", fill="x", anchor="n")
+
+        # Header Text
+        label1 = tk.Label(header_frame,text="Page One", width=8, bg="#272727", fg="#a38627", font="arial 16")
+        label1.pack(side="left", padx=(10,0), ipady=10)
+
+        #Menu Buttons
+
+        #PageTwo
+        page_two_btn = tk.Button(header_frame, text="Page Two", width=8,
+                                 bg="#272727", fg="#a38627", font="arial 11", relief="flat",
+                                 command=lambda: controller.show_frame(page2.PageTwo))
+        page_two_btn.pack(side="right", padx=2, anchor="se")
+        
+        
+        #HomePage
+        home_page_btn = tk.Button(header_frame, text="Home", width=8,
+                                 bg="#272727", fg="#a38627", font="arial 11", relief="flat",
+                                 command=lambda: controller.show_frame(home.HomePage))
+        home_page_btn.pack(side="right", padx=2, anchor="se")
+
+        # Center Frame: For Title & Text
+        center_frame = tk.Frame(home_frame, bg="#272727")
+        center_frame.pack(pady=(200,0))
+
+        # Title
+        title_label = tk.Label(center_frame, text="Title Here for PageOne",
+                               bg="#272727", fg="#a38627", font="arial 20")
+        title_label.pack()
+
+        # Text
+        text_label = tk.Label(center_frame, text="Add content to PageOne",
+                              bg="#272727", fg="#a38627", font="arial 18")
+        text_label.pack(pady=(50,0))
+
+# PageOne ____________________________________ End
+
+# PageTwo ____________________________________ Start
+
+from tkinter import *
+import tkinter as tk
+
+# import Pages
+import home
+import page1
+
+
+# PageTwo
+class PageTwo(tk.Frame):
+
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+
+        # Frame
+        home_frame = tk.Frame(self, bg="#272727")
+        home_frame.pack(side="top", fill="both", expand=True)
+
+        # Header Frame
+        header_frame = tk.Frame(home_frame, bg="#1a1a1a")
+        header_frame.pack(side="top", fill="x", anchor="n")
+
+        # Header Text
+        label1 = tk.Label(header_frame,text="Page Two", width=8, bg="#272727", fg="#a38627", font="arial 16")
+        label1.pack(side="left", padx=(10,0), ipady=10)
+
+        #Menu Buttons
+        #HomePage
+        home_page_btn = tk.Button(header_frame, text="Home", width=8,
+                                 bg="#272727", fg="#a38627", font="arial 11", relief="flat",
+                                 command=lambda: controller.show_frame(home.HomePage))
+        home_page_btn.pack(side="right", padx=2, anchor="se")
+
+        #PageOne
+        page_one_btn = tk.Button(header_frame, text="Page One", width=8,
+                                 bg="#272727", fg="#a38627", font="arial 11", relief="flat",
+                                 command=lambda: controller.show_frame(page1.PageOne))
+        page_one_btn.pack(side="right", padx=2, anchor="se")
+
+        # Center Frame: For Title & Text
+        center_frame = tk.Frame(home_frame, bg="#272727")
+        center_frame.pack(pady=(200,0))
+
+        # Title
+        title_label = tk.Label(center_frame, text="Title Here for PageTwo",
+                               bg="#272727", fg="#a38627", font="arial 20")
+        title_label.pack()
+
+        # Text
+        text_label = tk.Label(center_frame, text="Add content to PageTwo",
+                              bg="#272727", fg="#a38627", font="arial 18")
+        text_label.pack(pady=(50,0))
+
+# PageTwo ____________________________________ End

@@ -47,6 +47,8 @@ if __name__ == "__main__":
 
 # Main Page ____________________________________ End
 
+# Save HomePage, PageOne, Page2 in their own files and import them
+
 # HomePage ____________________________________ Start
 
 from tkinter import *
